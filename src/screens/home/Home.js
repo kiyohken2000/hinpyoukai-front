@@ -1,42 +1,61 @@
-import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import ScreenTemplate from '../../components/ScreenTemplate'
 import Button from '../../components/Button'
-import { useNavigate } from "react-router-dom";
 import { colors, fontSize } from "../../theme";
-import { UserContext } from '../../contexts/UserContext'
+import { isImageUrl } from "./functions";
+import RenderResult from "./RenderResult";
+import { sleep } from "../../utils/utilFunctions";
+import axios from "axios";
+import { endpoint } from "../../config";
 
 export default function Home() {
-  const navigate = useNavigate()
-  const { setUser } = useContext(UserContext)
+  const [inputText, setInputText] = useState('')
+  const [result, setResult] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const onButtonPress = () => {
-    navigate('/detail')
-  }
-
-  const onLogoutPress = () => {
-    setUser('')
+  const onButtonPress = async() => {
+    try {
+      setIsLoading(true)
+      const { data } = await axios.post(
+        endpoint,
+        {data: inputText},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+      setResult(data)
+    } catch(e) {
+      console.log('request error', e)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
     <ScreenTemplate>
       <View style={styles.container}>
-        <Text style={styles.label}>Home</Text>
         <View style={{width: '50%'}}>
-          <Button
-            label='Go Detail'
-            onPress={onButtonPress}
-            color={colors.lightPurple}
-            desable={false}
-            labelColor={colors.white}
+          <Text style={styles.label}>画像URLを入力してください</Text>
+          <TextInput
+            value={inputText}
+            onChangeText={(text) => setInputText(text)}
+            style={styles.input}
           />
           <View style={{paddingVertical: 10}} />
           <Button
-            label='Logout'
-            onPress={onLogoutPress}
-            color={colors.aquamarine}
-            desable={false}
-            labelColor={colors.black}
+            label='解析する'
+            onPress={onButtonPress}
+            color={colors.lightPurple}
+            disable={!isImageUrl({inputText})}
+            labelColor={colors.white}
+            isLoading={isLoading}
+          />
+          <View style={{paddingVertical: 10}} />
+          <RenderResult
+            result={result}
           />
         </View>
       </View>
@@ -54,5 +73,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: fontSize.xxLarge,
     fontWeight: '500'
-  }
+  },
+  input: {
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 10
+  },
 })
