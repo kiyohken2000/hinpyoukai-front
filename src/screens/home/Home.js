@@ -5,26 +5,31 @@ import Button from '../../components/Button'
 import { colors, fontSize } from "../../theme";
 import { isImageUrl } from "./functions";
 import RenderResult from "./RenderResult";
-import { sleep } from "../../utils/utilFunctions";
 import axios from "axios";
-import { endpoint } from "../../config";
+import { endpoint, headers, version } from "../../config";
+import RenderOptions from "./RenderOptions";
 
 export default function Home() {
   const [inputText, setInputText] = useState('')
   const [result, setResult] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [numberPositionIndex, setNumberPositionIndex] = useState(0)
+  const [numberFontSize, setNumberFontSize] = useState(32)
+  const [isBrackets, setIsBrackets] = useState(true)
 
   const onButtonPress = async() => {
     try {
       setIsLoading(true)
+      const requestBody = {
+        data: inputText,
+        numberPosition: numberPositionIndex,
+        fontSize: numberFontSize,
+        isBrackets: isBrackets,
+      }
       const { data } = await axios.post(
         endpoint,
-        {data: inputText},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
+        requestBody,
+        {headers: headers}
       );
       setResult(data)
     } catch(e) {
@@ -45,6 +50,15 @@ export default function Home() {
             style={styles.input}
           />
           <View style={{paddingVertical: 10}} />
+            <RenderOptions
+              numberPositionIndex={numberPositionIndex}
+              setNumberPositionIndex={setNumberPositionIndex}
+              numberFontSize={numberFontSize}
+              setNumberFontSize={setNumberFontSize}
+              isBrackets={isBrackets}
+              setIsBrackets={setIsBrackets}
+            />
+          <View style={{paddingVertical: 10}} />
           <Button
             label='解析する'
             onPress={onButtonPress}
@@ -57,6 +71,10 @@ export default function Home() {
           <RenderResult
             result={result}
           />
+          <View style={{paddingVertical: 10}} />
+          <View style={{alignItems: 'center'}}>
+            <Text style={styles.versionLabel}>version {version}</Text>
+          </View>
         </View>
       </View>
     </ScreenTemplate>
@@ -80,4 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10
   },
+  versionLabel: {
+    fontSize: fontSize.small
+  }
 })

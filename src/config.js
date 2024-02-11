@@ -1,10 +1,16 @@
 const config = {
-  siteTitle: 'My React App',
-  siteUrl: 'https://www.yahoo.co.jp'
+  siteTitle: '品評会画像メーカー',
+  siteUrl: 'https://abeshinzoexplorer.web.app/'
 }
 
 const basename = ''
 
 const endpoint = 'https://hinpyoukai-api-omc3n2et7a-an.a.run.app'
 
-export { config, basename, endpoint }
+const headers = {
+  "Content-Type": "application/json",
+}
+
+const version = '1.0.1'
+
+export { config, basename, endpoint, headers, version }
