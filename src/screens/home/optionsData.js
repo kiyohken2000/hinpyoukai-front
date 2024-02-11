@@ -1,7 +1,7 @@
 const fontSizeOptions = [
-  {label: '大', value: 32},
-  {label: '中', value: 25},
-  {label: '小', value: 20},
+  {label: '大', value: 42},
+  {label: '中', value: 32},
+  {label: '小', value: 22},
 ]
 
 const bracketsOptions = [

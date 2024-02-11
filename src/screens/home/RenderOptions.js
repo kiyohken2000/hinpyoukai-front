@@ -16,7 +16,7 @@ export default function RenderOptions(props) {
         <TouchableOpacity
           onPress={() => setIsVisible(!isVisible)}
         >
-          <Text style={styles.linkText}>Options</Text>
+          <Text style={styles.linkText}>オプション</Text>
         </TouchableOpacity>
       </View>
     )
@@ -27,7 +27,7 @@ export default function RenderOptions(props) {
       <TouchableOpacity
         onPress={() => setIsVisible(!isVisible)}
       >
-        <Text style={styles.linkText}>Options</Text>
+        <Text style={styles.linkText}>オプション</Text>
       </TouchableOpacity>
       <View style={{paddingTop: 10}}>
         <RadioGroup
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   linkText: {
-    fontSize: fontSize.xxLarge,
+    fontSize: fontSize.large,
     color: colors.purple,
     textDecorationLine: 'underline'
   },

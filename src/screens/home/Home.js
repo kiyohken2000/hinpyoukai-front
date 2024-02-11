@@ -15,7 +15,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [numberPositionIndex, setNumberPositionIndex] = useState(0)
   const [numberFontSize, setNumberFontSize] = useState(32)
-  const [isBrackets, setIsBrackets] = useState(true)
+  const [isBrackets, setIsBrackets] = useState(false)
 
   const onButtonPress = async() => {
     try {
