@@ -8,13 +8,14 @@ import RenderResult from "./RenderResult";
 import axios from "axios";
 import { endpoint, headers, version } from "../../config";
 import RenderOptions from "./RenderOptions";
+import { fontSizeOptions } from "./optionsData";
 
 export default function Home() {
   const [inputText, setInputText] = useState('')
   const [result, setResult] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [numberPositionIndex, setNumberPositionIndex] = useState(0)
-  const [numberFontSize, setNumberFontSize] = useState(32)
+  const [numberFontSize, setNumberFontSize] = useState(fontSizeOptions[1].value)
   const [isBrackets, setIsBrackets] = useState(false)
 
   const onButtonPress = async() => {
