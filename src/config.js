@@ -1,6 +1,6 @@
 const config = {
   siteTitle: '品評会画像メーカー',
-  siteUrl: 'https://abeshinzoexplorer.web.app/'
+  siteUrl: 'https://hinpyoukai.com'
 }
 
 const basename = ''
