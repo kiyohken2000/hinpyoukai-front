@@ -11,6 +11,11 @@ const headers = {
   "Content-Type": "application/json",
 }
 
+const storeUrls = {
+  appstore: 'https://apps.apple.com/jp/app/id6477918163',
+  googleplay: 'https://play.google.com/store/apps/details?id=net.votepurchase.hinpyoukai',
+}
+
 const version = '1.0.2'
 
-export { config, basename, endpoint, headers, version }
+export { config, basename, endpoint, headers, version, storeUrls }

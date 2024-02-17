@@ -8,15 +8,16 @@ import RenderResult from "./RenderResult";
 import axios from "axios";
 import { endpoint, headers, version } from "../../config";
 import RenderOptions from "./RenderOptions";
-import { fontSizeOptions } from "./optionsData";
+import { fontSizeOptions, bracketsOptions, positionOptions } from "./optionsData";
+import RenderBadges from "./RenderBadges";
 
 export default function Home() {
   const [inputText, setInputText] = useState('')
   const [result, setResult] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [numberPositionIndex, setNumberPositionIndex] = useState(0)
+  const [numberPositionIndex, setNumberPositionIndex] = useState(positionOptions[0].value)
   const [numberFontSize, setNumberFontSize] = useState(fontSizeOptions[1].value)
-  const [isBrackets, setIsBrackets] = useState(false)
+  const [isBrackets, setIsBrackets] = useState(bracketsOptions[1].value)
 
   const onButtonPress = async() => {
     try {
@@ -73,6 +74,7 @@ export default function Home() {
             result={result}
           />
           <View style={{paddingVertical: 10}} />
+          <RenderBadges/>
           <View style={{alignItems: 'center'}}>
             <Text style={styles.versionLabel}>version {version}</Text>
           </View>
