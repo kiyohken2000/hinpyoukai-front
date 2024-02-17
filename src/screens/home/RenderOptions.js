@@ -38,7 +38,7 @@ export default function RenderOptions(props) {
         />
         <RadioGroup
           onPress={({value}) => setNumberPositionIndex(value)}
-          labelText='数字の位置'
+          labelText='番号の位置'
           options={positionOptions}
           currentValue={numberPositionIndex}
         />
