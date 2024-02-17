@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   image: {
-    height: 150,
+    height: 70,
     width: 150
   },
   image2: {
-    height: 200,
+    height: 70,
     width: 180
   }
 })
