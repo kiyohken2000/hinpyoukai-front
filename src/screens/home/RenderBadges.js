@@ -26,7 +26,7 @@ export default function RenderBadges() {
         <Image
           source={require('../../assets/images/googleplay.png')}
           resizeMode='contain'
-          style={styles.image}
+          style={styles.image2}
         />
       </TouchableOpacity>
     </View>
@@ -36,10 +36,15 @@ export default function RenderBadges() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   image: {
-    height: 100,
+    height: 150,
     width: 150
+  },
+  image2: {
+    height: 200,
+    width: 180
   }
 })
