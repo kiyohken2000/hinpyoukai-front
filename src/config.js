@@ -16,6 +16,6 @@ const storeUrls = {
   googleplay: 'https://play.google.com/store/apps/details?id=net.votepurchase.hinpyoukai',
 }
 
-const version = '1.0.4'
+const version = '1.0.5'
 
 export { config, basename, endpoint, headers, version, storeUrls }
